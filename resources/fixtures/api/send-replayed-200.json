@@ -1,0 +1,7 @@
+{
+    "status": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "body": "{\"data\":{\"id\":\"01k7a3z0q8m4v9x2b6c1d5e7f3\",\"channel\":\"sms\",\"status\":\"sent\",\"to\":\"\\u2022\\u2022\\u2022 0142\",\"from\":\"+17345550100\",\"reference\":\"reminder-4812\",\"provider_message_id\":\"SM00000000000000000000000000000001\",\"error_code\":null,\"created_at\":\"2025-10-09T08:53:10+00:00\",\"sent_at\":\"2025-10-09T08:53:15+00:00\",\"status_updated_at\":\"2025-10-09T08:53:15+00:00\",\"history\":[{\"status\":\"sent\",\"provider_status\":\"queued\",\"error_code\":null,\"occurred_at\":\"2025-10-09T08:53:15+00:00\",\"source\":\"send\"}]}}"
+}

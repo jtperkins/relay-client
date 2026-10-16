@@ -1,0 +1,13 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+
+parameters:
+    level: 8
+    paths:
+        - src
+    tmpDir: .phpstan-cache
+    ignoreErrors:
+        # A test trait is used by an app's tests, never by src/.
+        -
+            identifier: trait.unused
+            path: src/Testing/SignsRelayCallbacks.php

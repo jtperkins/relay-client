@@ -1,0 +1,13 @@
+{
+    "event": "opt_out.changed",
+    "headers": {
+        "Relay-Event": "opt_out.changed",
+        "Relay-Delivery": "01k7a3z1b2c3d4e5f6g7h8j9k0",
+        "Relay-Signature": "t=1760000000,v1=4c6802f845bc387ca2b1b671b8bc2ccd5fb467127e37eaa7924fa0392130a954",
+        "User-Agent": "StudyMessaging-Relay/1",
+        "Content-Type": "application/json"
+    },
+    "body": "{\"delivery_id\":\"01k7a3z1b2c3d4e5f6g7h8j9k0\",\"event\":\"opt_out.changed\",\"id\":\"01k7a3z0q8m4v9x2b6c1d5e7f5\",\"number\":\"+17345550100\",\"recipient\":\"+17345550142\",\"opted_out\":true,\"version\":1,\"source\":\"stop_keyword\",\"cause\":\"keyword\",\"changed_at\":\"2025-10-09T08:53:01+00:00\"}",
+    "secret": "test_secret",
+    "timestamp": 1760000000
+}

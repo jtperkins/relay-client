@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          coverage: none
+      - run: composer update --no-interaction --no-progress
+      - run: composer lint
+      - run: composer analyse
+
+  test:
+    name: PHP ${{ matrix.php }} · Laravel ${{ matrix.laravel }}${{ matrix.stability == 'prefer-lowest' && ' (lowest)' || '' }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ['8.2', '8.3', '8.4']
+        laravel: ['11', '12', '13']
+        stability: [prefer-stable]
+        include:
+          - { laravel: '11', testbench: '^9.0' }
+          - { laravel: '12', testbench: '^10.0' }
+          - { laravel: '13', testbench: '^11.0' }
+          - { php: '8.2', laravel: '11', testbench: '^9.0', stability: prefer-lowest }
+        exclude:
+          # Laravel 13 needs PHP 8.3.
+          - { php: '8.2', laravel: '13' }
+    env:
+      # Laravel 11 is past security support, so Composer's advisory blocking would refuse every
+      # release of it; this cell proves the package still runs there.
+      COMPOSER_NO_SECURITY_BLOCKING: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+      - name: Pin Laravel ${{ matrix.laravel }}
+        run: composer require --dev "orchestra/testbench:${{ matrix.testbench }}" -W --no-interaction --no-progress --no-update
+      - run: composer update --${{ matrix.stability }} --no-interaction --no-progress
+      - run: composer test

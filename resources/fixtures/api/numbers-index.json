@@ -1,0 +1,7 @@
+{
+    "status": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "body": "{\"data\":[{\"phone\":\"+17345550100\",\"label\":\"Study Line\",\"is_default\":true}]}"
+}

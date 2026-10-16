@@ -1,0 +1,7 @@
+{
+    "status": 422,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "body": "{\"message\":\"The recipient has opted out of messages from this number.\",\"errors\":{\"to\":[\"The recipient has opted out of messages from this number.\"]},\"code\":\"recipient_opted_out\"}"
+}

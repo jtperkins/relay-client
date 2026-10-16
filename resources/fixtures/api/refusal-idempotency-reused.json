@@ -1,0 +1,7 @@
+{
+    "status": 422,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "body": "{\"message\":\"This Idempotency-Key was already used for a different request (idempotency_key_reused).\",\"errors\":{\"idempotency_key\":[\"This Idempotency-Key was already used for a different request (idempotency_key_reused).\"]},\"code\":\"idempotency_key_reused\"}"
+}

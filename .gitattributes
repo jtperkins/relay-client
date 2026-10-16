@@ -1,0 +1,10 @@
+# What Composer's dist archive leaves out. /src, /config and /resources (the bundled contract
+# fixtures, read at runtime by Testing\RelayFixtures) are never listed here.
+/tests export-ignore
+/.github export-ignore
+/scripts export-ignore
+/phpunit.xml export-ignore
+/phpstan.neon export-ignore
+/pint.json export-ignore
+/.gitattributes export-ignore
+/.gitignore export-ignore

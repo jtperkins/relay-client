@@ -1,0 +1,7 @@
+{
+    "status": 403,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "body": "{\"message\":\"This project is paused.\",\"code\":\"project_inactive\"}"
+}

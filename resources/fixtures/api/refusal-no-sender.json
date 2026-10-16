@@ -1,0 +1,7 @@
+{
+    "status": 422,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "body": "{\"message\":\"This project has no sender for the channel; set Participant Communication in Settings.\",\"errors\":{\"from\":[\"This project has no sender for the channel; set Participant Communication in Settings.\"]},\"code\":\"no_sender\"}"
+}
