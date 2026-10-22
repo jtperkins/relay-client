@@ -71,6 +71,37 @@ it('sends an email, and leaves out an absent reference, sender and a request id 
         && ! $request->hasHeader('X-Request-Id'));
 });
 
+it('sends an email\'s html part beside its body', function (): void {
+    Http::fake(['relay.example.test/*' => RelayFixtures::response('send-email-accepted-202')]);
+
+    Relay::sendEmail('ada@example.test', 'Your visit', 'See you at 9.', 'attempt-3', 'welcome-4812', null, null, '<p>See you at <strong>9</strong>.</p>');
+
+    Http::assertSent(fn (Request $request): bool => $request->data() === [
+        'channel' => 'email',
+        'to' => 'ada@example.test',
+        'subject' => 'Your visit',
+        'body' => 'See you at 9.',
+        'html' => '<p>See you at <strong>9</strong>.</p>',
+        'reference' => 'welcome-4812',
+    ]);
+});
+
+it('parses the email fixture into a queued, unreplayed message with an id of its own', function (): void {
+    Http::fake([
+        'relay.example.test/*' => Http::sequence()
+            ->push(RelayFixtures::api('send-email-accepted-202')['body'], 202, ['Content-Type' => 'application/json'])
+            ->push(RelayFixtures::api('send-accepted-202')['body'], 202, ['Content-Type' => 'application/json']),
+    ]);
+
+    $email = Relay::sendEmail('ada@example.test', 'Welcome', 'Hello.', 'attempt-4');
+    $sms = Relay::sendSms('+17345550142', 'Hi', 'attempt-5');
+
+    expect($email->status)->toBe('queued')
+        ->and($email->replayed)->toBeFalse()
+        ->and($email->id)->toBe('01k7a3z0q8m4v9x2b6c1d5e7f7')
+        ->and($email->id)->not->toBe($sms->id);
+});
+
 it('marks a 200 as a replay', function (): void {
     Http::fake(['relay.example.test/*' => RelayFixtures::response('send-replayed-200')]);
 

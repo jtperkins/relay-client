@@ -34,11 +34,11 @@ it('verifies every callback fixture and fires its event', function (string $name
     }, 1);
 })->with(fn (): array => RelayFixtures::callbacks());
 
-it('has the eleven callback fixtures of the contract', function (): void {
+it('has the twelve callback fixtures of the contract', function (): void {
     expect(RelayFixtures::callbacks())->toBe([
         'inbound-help', 'inbound-plain', 'inbound-start', 'inbound-stop', 'inbound-yes',
         'opt-out-provider-error', 'opt-out-started', 'opt-out-stopped',
-        'status-delivered', 'status-failed', 'status-sent',
+        'status-delivered', 'status-email-delivered', 'status-failed', 'status-sent',
     ]);
 });
 

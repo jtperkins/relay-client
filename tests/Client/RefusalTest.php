@@ -102,7 +102,7 @@ it('maps a 404 to NotFound, an unknown 4xx to RelayRefused, and a 5xx to RelayUn
 it('maps every API fixture to a documented outcome', function (): void {
     $names = RelayFixtures::apis();
 
-    expect($names)->toHaveCount(13);
+    expect($names)->toHaveCount(14);
 
     foreach ($names as $name) {
         $status = RelayFixtures::api($name)['status'];

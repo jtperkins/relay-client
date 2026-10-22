@@ -15,7 +15,7 @@ use Jtperkins\RelayClient\RelayClient;
 /**
  * @method static bool configured()
  * @method static SentMessage sendSms(string $to, string $body, string $idempotencyKey, ?string $reference = null, ?string $from = null, ?string $requestId = null)
- * @method static SentMessage sendEmail(string $to, string $subject, string $body, string $idempotencyKey, ?string $reference = null, ?string $from = null, ?string $requestId = null)
+ * @method static SentMessage sendEmail(string $to, string $subject, string $body, string $idempotencyKey, ?string $reference = null, ?string $from = null, ?string $requestId = null, ?string $html = null)
  * @method static MessageStatus message(string $id)
  * @method static list<Number> numbers()
  * @method static OptOutPage optOuts(?string $to = null, ?string $from = null, ?bool $optedOut = null, ?DateTimeInterface $changedSince = null, int $page = 1)

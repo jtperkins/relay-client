@@ -61,8 +61,9 @@ $sent->id;        // the relay's message id
 $sent->replayed;  // true when the same key had already been used (a 200)
 ```
 
-`sendEmail($to, $subject, $body, $idempotencyKey, …)`, `message($id)` (status and history),
-`numbers()` and `optOuts(to:, from:, optedOut:, changedSince:, page:)` follow the same shape.
+`sendEmail($to, $subject, $body, $idempotencyKey, …, html: $html)` (`$body` is the plain-text part,
+and the optional `html` is sent beside it), `message($id)` (status and history), `numbers()` and
+`optOuts(to:, from:, optedOut:, changedSince:, page:)` follow the same shape.
 
 **There is no HTTP retry in the client.** Retries belong to your queue. Use **one key per logical
 attempt** and **store the body you rendered**: a retried job then sends the same bytes under the same

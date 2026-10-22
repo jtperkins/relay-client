@@ -62,13 +62,19 @@ final class RelayClient
     }
 
     /**
-     * Queue one plain-text email.
+     * Queue one email; `$body` is the plain-text part and `$html`, when given, is sent beside it.
      *
      * @throws RelayException
      */
-    public function sendEmail(string $to, string $subject, string $body, string $idempotencyKey, ?string $reference = null, ?string $from = null, ?string $requestId = null): SentMessage
+    public function sendEmail(string $to, string $subject, string $body, string $idempotencyKey, ?string $reference = null, ?string $from = null, ?string $requestId = null, ?string $html = null): SentMessage
     {
-        return $this->send(['channel' => 'email', 'to' => $to, 'subject' => $subject, 'body' => $body], $idempotencyKey, $reference, $from, $requestId);
+        $payload = ['channel' => 'email', 'to' => $to, 'subject' => $subject, 'body' => $body];
+
+        if ($html !== null) {
+            $payload['html'] = $html;
+        }
+
+        return $this->send($payload, $idempotencyKey, $reference, $from, $requestId);
     }
 
     /** @throws RelayException */
